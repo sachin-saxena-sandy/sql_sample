@@ -1,3 +1,4 @@
+--The SQL CREATE TABLE Statement
 CREATE TABLE Persons (
     PersonID int primary key,
     LastName varchar(255),
