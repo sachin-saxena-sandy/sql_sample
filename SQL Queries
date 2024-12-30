@@ -1,0 +1,129 @@
+#alter table Shippings add column customer_name varchar (50);
+#alter table Shippings drop column customer_name;
+#select * from customers where age < 30;
+#select * from customers where country  in ("USA", "UAE");
+#select * from customers where country not in ("USA", "UAE");
+#select * from Orders order by amount asc;
+#select * from Orders order by amount desc;
+#select * from Orders order by amount desc limit 3;
+#select * from Orders where amount >= 300 and item = "Mouse";
+#select * from Orders where amount >= 400 or item = "Mouse";
+#select * from Orders where customer_id = 4;
+#select * from Orders where customer_id = 4 order by amount asc;
+#select * from shippings where status = "Pending";
+#select * from shippings where status in ("Pending");
+#select * from shippings where status not in ("Pending");
+#select count(country) from Customers;
+#select max(age) from Customers;
+#select min(amount) from Orders;
+#select sum(amount) from Orders;
+#select avg(amount) from Orders;
+#select country, count(age) from Customers group by country;
+#select item, avg(amount) from Orders group by item order by avg(amount);
+#select item, avg(amount) from Orders group by item order by amount desc;
+#select item, avg(amount) from Orders group by item order by amount desc limit 3;
+#select item, avg(amount) from Orders group by item order by item;
+#select item, avg(amount) from Orders group by item order by item desc;
+#select dept, avg(salary) from emp group by dept having salary > 200;
+#select city from student where grade ="A" group by city having max(marks) >= 85 order by city desc;
+#update student set grade = "O" where grade = "A";
+#update student set grade = "O" where marks >=90;
+#update student set marks = marks + 1;
+#delete from student where id = 6;
+#create table dept(
+  id int primary key,
+  name varchar(50)
+  );
+#create table teacher(
+  id int primary key,
+  name varchar(50),
+  dept_id int,
+  foreign key(dept_id) references dept(id)
+  on update cascade
+  on delete cascade
+  );
+#update dept set id = 111 where id = 101;
+#select * from dept;
+#select * from teacher;
+#alter table student add column age int not null default 19;
+#alter table student change column age stu_age int;
+#alter table student drop column age;
+#alter table Item rename to Orders; ----change table name----
+#alter table Student rename column id to rollno;----------change column name-------
+#Truncate table student;------it delete only table data-------
+#Drop table student;----------it delete whole table-----------
+#alter table student rename column name to full_name;
+#delete from student where marks < 80;
+#alter table student drop column grade;
+-----------------JOINS-------------------------------------------
+#select student1.student_id, name, course 
+from student1
+inner join course
+on student1.student_id = course.student_id;
+=============INNER JOIN===============
+#select s.student_id, name, course 
+from student1 as s
+inner join course as c
+on s.student_id = c.student_id;
+================LEFT JOIN==============
+#select *
+from student1 as s
+left join course as c
+on s.student_id = c.student_id;
+===========RIGHT JOIN==================
+#select *
+from student1 as s
+right join course as c
+on s.student_id = c.student_id;
+========FULL JOIN / FULL OUTER JOIN / OUTER JOIN=====
+#select *
+from student1 as s
+left join course as c
+on s.student_id = c.student_id
+union
+select *
+from student1 as s
+right join course as c
+on s.student_id = c.student_id;
+===========LEFT EXCLUSIVE JOIN==========
+#select *
+from student1 as s
+left join course as c
+on s.student_id = c.student_id
+where c.student_id is null;
+===========RIGHT EXCLUSIVE JOIN=========
+#select *
+from student1 as s
+right join course as c
+on s.student_id = c.student_id
+where s.student_id is null;
+=========SELF JOIN===================
+#select a.name as manager_name, b.name 
+from emp as a
+join emp as b
+on a.id = b.manager_id;
+=========UNION====================
+#select name from emp   ----union only applied on same column names.
+union
+select name from emp;
+========UNION ALL======================
+#select name from emp  ----union all return all records including duplicate also
+union all
+select name from emp;
+===========SUB QUERY====================
+#select full_name, marks
+from student
+where marks > (select avg(marks) from student);
+ 
+#select full_name, rollno
+from student
+where rollno in (
+  select rollno from student where rollno % 2 = 0);
+ 
+#select max(marks)
+from (select * from student where city = "Farah") as temp;
+=========VIEW========================
+#create view view1 as
+select rollno, full_name, marks from student;
+ 
+#drop view view1;
